@@ -1,0 +1,401 @@
+services:
+    - name: cms-association-service
+      port: 80
+      alias: cms-association-service
+      protocol: rest
+endpoints:
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-read
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-batch-read-POST
+          type: POST
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-batch-read-POST
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/batch/read
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+    - name: crm-v4-associations-fromObjectType-toObjectType-labels
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-labels-GET
+          type: GET
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-labels-GET
+        - name: crm-v4-associations-fromObjectType-toObjectType-labels-POST
+          type: POST
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-labels-POST
+        - name: crm-v4-associations-fromObjectType-toObjectType-labels-PUT
+          type: PUT
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-labels-PUT
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/labels
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+    - name: crm-v4-associations-fromObjectType-toObjectType-labels-associationTypeId
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-labels-associationTypeId-DELETE
+          type: DELETE
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-labels-associationTypeId-DELETE
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/labels/{associationTypeId}
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-archive
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-batch-archive-POST
+          type: POST
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-batch-archive-POST
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/batch/archive
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-associate-default
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-batch-associate-default-POST
+          type: POST
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-batch-associate-default-POST
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/batch/associate/default
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-create
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-batch-create-POST
+          type: POST
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-batch-create-POST
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/batch/create
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-labels-archive
+      methods:
+        - name: crm-v4-associations-fromObjectType-toObjectType-batch-labels-archive-POST
+          type: POST
+          responseValue: crm-v4-associations-fromObjectType-toObjectType-batch-labels-archive-POST
+      path: /crm/v4/associations/{fromObjectType}/{toObjectType}/batch/labels/archive
+      defined:
+        path: openapi/associations-openapi.yaml
+      service: cms-association-service
+responseValues:
+    - name: crm-v4-associations-fromObjectType-toObjectType-labels-GET
+      blob: |-
+        {
+          "category": "electronics",
+          "context": {
+            "key": [
+              "product-123",
+              "product-456",
+              "product-789"
+            ]
+          },
+          "correlationId": "abcd1234",
+          "errors": [
+            {
+              "code": "404",
+              "context": {
+                "key": [
+                  "product-123"
+                ]
+              },
+              "in": "query",
+              "message": "Product not found",
+              "subCategory": "not-found"
+            }
+          ],
+          "links": {
+            "key": "https://example.com/products/product-123"
+          },
+          "message": "Product details retrieved successfully",
+          "subCategory": "success"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-labels-POST
+      blob: |-
+        {
+          "results": [
+            {
+              "category": "Electronics",
+              "label": "Smartphone",
+              "typeId": 5
+            }
+          ]
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-labels-PUT
+      blob: |-
+        {
+          "category": "electronics",
+          "context": {
+            "key": [
+              "product-123",
+              "product-456",
+              "product-789"
+            ]
+          },
+          "correlationId": "abcd1234",
+          "errors": [
+            {
+              "code": "invalid-input",
+              "context": {
+                "key": [
+                  "field1",
+                  "field2",
+                  "field3"
+                ]
+              },
+              "in": "request-body",
+              "message": "Invalid input data",
+              "subCategory": "validation"
+            }
+          ],
+          "links": {
+            "key": "https://example.com/product-123"
+          },
+          "message": "Product not found",
+          "subCategory": "not-found"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-archive-POST
+      blob: |-
+        {
+          "category": "electronics",
+          "context": {
+            "key": [
+              "product-123",
+              "product-456"
+            ]
+          },
+          "correlationId": "abc123",
+          "errors": [
+            {
+              "code": "invalid-input",
+              "context": {
+                "key": [
+                  "product-789"
+                ]
+              },
+              "in": "request-body",
+              "message": "Invalid input",
+              "subCategory": "validation-error"
+            }
+          ],
+          "links": {
+            "key": "https://example.com/products/123"
+          },
+          "message": "Product not found",
+          "subCategory": "not-found"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-create-POST
+      blob: |-
+        {
+          "completedAt": "2022-06-30T15:30:00Z",
+          "errors": [
+            {
+              "category": {
+                "httpStatus": "OK",
+                "name": "Validation"
+              },
+              "context": {
+                "key": [
+                  "product_id"
+                ]
+              },
+              "errors": [
+                {
+                  "code": "INVALID_FORMAT",
+                  "context": {
+                    "key": [
+                      "product_id"
+                    ]
+                  },
+                  "in": "request_body",
+                  "message": "Invalid format for product ID",
+                  "subCategory": "Input Validation"
+                }
+              ],
+              "id": "error_123",
+              "links": {
+                "key": "https://example.com/errors/error_123"
+              },
+              "message": "Validation failed for the request",
+              "status": "FAILED",
+              "subCategory": ""
+            }
+          ],
+          "links": {
+            "key": "https://example.com/api/products"
+          },
+          "numErrors": 1,
+          "requestedAt": "2022-06-30T15:00:00Z",
+          "results": [
+            {
+              "fromObjectId": 123,
+              "fromObjectTypeId": "user",
+              "labels": [
+                "new",
+                "featured"
+              ],
+              "toObjectId": 456,
+              "toObjectTypeId": "product"
+            }
+          ],
+          "startedAt": "2022-06-30T15:10:00Z",
+          "status": "COMPLETED"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-labels-archive-POST
+      blob: |-
+        {
+          "category": "electronics",
+          "context": {
+            "key": [
+              "product-12345"
+            ]
+          },
+          "correlationId": "abc123",
+          "errors": [
+            {
+              "code": "400",
+              "context": {
+                "key": [
+                  "product-12345"
+                ]
+              },
+              "in": "request-body",
+              "message": "Invalid price value",
+              "subCategory": "validation"
+            }
+          ],
+          "links": {
+            "key": "https://example.com/products/12345"
+          },
+          "message": "Product not found",
+          "subCategory": "not-found"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-read-POST
+      blob: |-
+        {
+          "completedAt": "2022-01-01T12:00:00Z",
+          "links": {
+            "key": "https://example.com/product/123"
+          },
+          "requestedAt": "2022-01-01T11:59:59Z",
+          "results": [
+            {
+              "from": {
+                "id": "987654321"
+              },
+              "paging": {
+                "next": {
+                  "after": "abc123",
+                  "link": "https://example.com/products?page=2"
+                },
+                "prev": {
+                  "before": "xyz789",
+                  "link": "https://example.com/products?page=1"
+                }
+              },
+              "to": [
+                {
+                  "associationTypes": [
+                    {
+                      "category": "USER_DEFINED",
+                      "label": "Related Products",
+                      "typeId": 20
+                    },
+                    {
+                      "category": "USER_DEFINED",
+                      "label": "Similar Products",
+                      "typeId": 30
+                    }
+                  ],
+                  "toObjectId": 20
+                }
+              ]
+            }
+          ],
+          "startedAt": "2022-01-01T11:59:00Z",
+          "status": "COMPLETED"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-labels-associationTypeId-DELETE
+      blob: |-
+        {
+          "category": "electronics",
+          "context": {
+            "key": [
+              "product-12345",
+              "product-67890"
+            ]
+          },
+          "correlationId": "abc123",
+          "errors": [
+            {
+              "code": "404",
+              "context": {
+                "key": [
+                  "product-12345"
+                ]
+              },
+              "in": "GET",
+              "message": "Product not found",
+              "subCategory": "not-found"
+            }
+          ],
+          "links": {
+            "key": "https://example.com/products/12345"
+          },
+          "message": "Product details retrieved successfully",
+          "subCategory": "product-details"
+        }
+    - name: crm-v4-associations-fromObjectType-toObjectType-batch-associate-default-POST
+      blob: |-
+        {
+          "completedAt": "2021-07-15T10:30:00Z",
+          "errors": [
+            {
+              "category": {
+                "httpStatus": "OK",
+                "name": "Validation Error"
+              },
+              "context": {
+                "key": [
+                  "email"
+                ]
+              },
+              "errors": [
+                {
+                  "code": "INVALID_FORMAT",
+                  "context": {
+                    "key": [
+                      "email"
+                    ]
+                  },
+                  "in": "request",
+                  "message": "Email address is not valid",
+                  "subCategory": "Email Validation"
+                }
+              ],
+              "id": "123456",
+              "links": {
+                "key": "https://example.com/docs/errors/123456"
+              },
+              "message": "One or more validation errors occurred",
+              "status": "ERROR",
+              "subCategory": ""
+            }
+          ],
+          "links": {
+            "key": "https://example.com/docs/associations"
+          },
+          "numErrors": 10,
+          "requestedAt": "2021-07-15T10:00:00Z",
+          "results": [
+            {
+              "associationSpec": {
+                "associationCategory": "USER_DEFINED",
+                "associationTypeId": 20
+              },
+              "from": {
+                "id": "123"
+              },
+              "to": {
+                "id": "456"
+              }
+            }
+          ],
+          "startedAt": "2021-07-15T10:15:00Z",
+          "status": "COMPLETED"
+        }
