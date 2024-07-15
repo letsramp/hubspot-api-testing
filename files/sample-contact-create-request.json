@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "email": "bcooper@biglytics.net",
+    "phone": "(877) 929-0687",
+    "company": "Biglytics",
+    "website": "biglytics.net",
+    "lastname": "Cooper",
+    "firstname": "Bryan"
+  },
+  "associations": []
+}
